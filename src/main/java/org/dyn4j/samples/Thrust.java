@@ -489,7 +489,6 @@ public class Thrust extends SimulationFrame {
         myState.put("canSeeTrash", canSeeTrash);
         myState.put("trashAngle", trashAngle);
 
-        System.out.println(velocityAngular);
         this.currentGameState = myState;
         return myState;
     }
