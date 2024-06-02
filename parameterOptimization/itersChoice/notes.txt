@@ -1,0 +1,62 @@
+ITERS=1, STEPS=200
+
+RUN1 = -125.0
+RUN2 = -265.0
+RUN3 = -150
+
+-------------------------
+ITERS=1, STEPS = 800
+
+RUN1 = -140.0
+RUN2 = -135.0
+RUN3 = -225.0
+RUN4 = -140.0
+RUN5 = -170.0
+RUN6 = -105.0
+RUN7 = -115.0
+
+MEDIAN = -140, (0.7 bodova po 1000 tickova)
+-------------------------
+ITERS=2, STEPS=400
+
+RUN1 = -355.0
+RUN2 = -590.0
+RUN3 = -275.0
+RUN4 = -505.0
+RUN5 = -290.0
+RUN6 = -200.0
+
+MEDIAN = 312.5 (1.56 bodova u 1000 tickova)
+-------------------------
+ITERS=3, STEPS = 260
+
+RUN1 = -335.0
+RUN2 = -495.0
+RUN3 = -325.0
+RUN4 = -630.0
+RUN5 = -245.0
+RUN6 = -405.0
+
+MEDIAN = 370 (1.85 bodova na 1000 tickova)
+
+-------------------------
+ITERS=4, STEPS = 200
+
+RUN1: -557.14285
+RUN2: -500
+RUN3: -364.2857
+RUN4: -285.71428
+RUN5: -300
+
+MEDIAN = -364.2857 (1.82 boda u 1000 tickova)
+
+-------------------------
+ITERS=5, STEPS  = 160
+
+RUN1 =  -280.0
+RUN2 = -475.0
+RUN3 = -120.0
+RUN4 = -610.0
+RUN5 = -240.0
+
+MEDIAN = -280, (1.4 boda u 1000 tickova)
