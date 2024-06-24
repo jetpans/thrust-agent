@@ -3,7 +3,7 @@ from frajer import makeCsv
 from pathlib import Path
 
 # Define the root directory
-root_dir = "D:\Coding\FAKS\Mentor\\raketa-zavrsni\parameterOptimization\\itersChoice"  # Replace with your directory path
+root_dir = "D:\Coding\FAKS\Mentor\\raketa-zavrsni\parameterOptimization\\stddev"  # Replace with your directory path
 
 # Traverse the directory tree
 for root, dirs, files in os.walk(root_dir):

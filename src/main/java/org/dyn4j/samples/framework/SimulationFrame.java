@@ -371,6 +371,7 @@ public abstract class SimulationFrame extends JFrame {
         double elapsedTime = TIME_CONSTANT;
         // get the graphics object to render to
         Graphics2D g = (Graphics2D) this.canvas.getBufferStrategy().getDrawGraphics();
+
         AffineTransform tx = null;
         if (renderGame) {
             this.transform(g);

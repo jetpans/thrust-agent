@@ -2,10 +2,7 @@ package org.dyn4j.samples.demos.thrustTraining;
 
 import org.apache.commons.math3.genetics.Fitness;
 import org.dyn4j.samples.Thrust;
-import org.dyn4j.samples.demos.thrustTraining.fitnessFunctions.AdvancedFitness;
-import org.dyn4j.samples.demos.thrustTraining.fitnessFunctions.DefaultFitness;
-import org.dyn4j.samples.demos.thrustTraining.fitnessFunctions.FitnessFunction;
-import org.dyn4j.samples.demos.thrustTraining.fitnessFunctions.TestFitness;
+import org.dyn4j.samples.demos.thrustTraining.fitnessFunctions.*;
 import org.dyn4j.samples.logger.AlgorithmAnalyzer;
 import org.dyn4j.samples.logger.Logger;
 import org.dyn4j.samples.models.NeuralNetwork;
@@ -32,7 +29,7 @@ public class ThrustCarouselSelection extends JFrame {
 
     public static int ITERS;
 
-    private static boolean goCondition = true;
+    public static boolean goCondition = true;
 
 
     private static class FitnessNeuralNetwork implements Comparator<FitnessNeuralNetwork>, Comparable<FitnessNeuralNetwork> {
@@ -66,24 +63,25 @@ public class ThrustCarouselSelection extends JFrame {
 
     public static void main(String[] args) {
         String t = java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
+        String settingsFile = "src/main/java/org/dyn4j/samples/resources/settings.properties";
+        settingsFile = args[0];
         final String folderName = "results/" + t + "/";
         new File(folderName).mkdirs();
         AlgorithmAnalyzer analyzer = new AlgorithmAnalyzer(new Logger(folderName + "log.txt"));
-        initKeyboardStopper();
+        //initKeyboardStopper();
 
         Properties prop = new Properties();
         int POPULATION_SIZE = 0, THREADS = 0, steps = 0, logFrequency = 1;
         int numOfL = 0, numOfN = 0;
         double KEEP_PERCENT = 0;
         String alphaFile = "", fitnessMode = "", mutatorMode = "", crossoverMode = "";
-        DoubleUnaryOperator transferFunction;
         int saveId = 0;
         NeuralNetwork.NNMutator m = null;
         NeuralNetwork.NNCrossover c = null;
         int inputs = 11;
         int outputs = 2;
 
-        try (FileInputStream fis = new FileInputStream("src/main/java/org/dyn4j/samples/resources/settings.properties")) {
+        try (FileInputStream fis = new FileInputStream(settingsFile)) {
             prop.load(fis);
             numOfL = Integer.parseInt(prop.getProperty("tcs.numOfLayers"));
             numOfN = Integer.parseInt(prop.getProperty("tcs.numOfNodesPerLayer"));
@@ -103,6 +101,21 @@ public class ThrustCarouselSelection extends JFrame {
                     break;
                 case "advanced":
                     ThrustCarouselSelection.myFitness = new AdvancedFitness();
+                    break;
+                case "advancedOne":
+                    ThrustCarouselSelection.myFitness = new FitnessOne();
+                    break;
+                case "advancedTwo":
+                    ThrustCarouselSelection.myFitness = new FitnessTwo();
+                    break;
+                case "advancedThree":
+                    ThrustCarouselSelection.myFitness = new FitnessThree();
+                    break;
+                case "advancedFour":
+                    ThrustCarouselSelection.myFitness = new FitnessFour();
+                    break;
+                case "advancedFive":
+                    ThrustCarouselSelection.myFitness = new FitnessFive();
                     break;
                 default:
                     System.out.println("Wrong fitness type.");
@@ -209,7 +222,7 @@ public class ThrustCarouselSelection extends JFrame {
                         Arrays.stream(population).mapToDouble((FitnessNeuralNetwork f) -> f.fitness).average().getAsDouble(),
                         0, POPULATION_SIZE, saveId - 1);
             }
-            if (staledCtr == 100) {
+            if (staledCtr == 400) {
                 goCondition = false;
             }
             staledCtr++;
@@ -278,9 +291,9 @@ public class ThrustCarouselSelection extends JFrame {
             }
         }
 
-        analyzer.plotResults(folderName + "img.png");
+//        analyzer.plotResults(folderName + "img.png");
         try {
-            Files.copy(Path.of("src/main/java/org/dyn4j/samples/resources/settings.properties"), Path.of(folderName + "settings.properties"), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(Path.of(settingsFile), Path.of(folderName + "savedSettings.properties"), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             System.out.println("Didnt save settings");
         }

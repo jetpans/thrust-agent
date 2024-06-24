@@ -74,12 +74,12 @@ public class Thrust extends SimulationFrame {
      * @param args command line arguments
      */
     public static void main(String[] args) {
-        NeuralNetwork test = Util.loadNeuralNetworkFromFile("parameterOptimization/itersChoice/iters=5steps=160/2024-05-31_14-43-23/AlphaThruster.obj13");
-        Thrust simulation = new Thrust(test, Worlds.get(2));
+        NeuralNetwork test = Util.loadNeuralNetworkFromFile("parameterOptimization/theBest/2024-06-11_18-32-42/AlphaThruster.obj10");
+        Thrust simulation = new Thrust(test, Worlds.get(1));
         simulation.myRandom = new Random(Math.round(10e8 * Math.random()));
 //        simulation.myRandom = new Random(0);
 
-        simulation.tickLimit = 1000000;
+        simulation.tickLimit = 10000;
         simulation.renderGame = true;
         simulation.verbose = true;
         simulation.run();
@@ -241,7 +241,7 @@ public class Thrust extends SimulationFrame {
 
             @Override
             public void end(TimeStep timeStep, PhysicsWorld<SimulationBody, ?> physicsWorld) {
-                if (Thrust.this.myAgent != null && Thrust.super.stepNumber % 3 == 0) {
+                if (Thrust.this.myAgent != null && Thrust.super.stepNumber % 1 == 0) {
                     Map<String, Boolean> action = Thrust.this.myAgent.makeAction(Thrust.this.calculateGameState());
                 }
 

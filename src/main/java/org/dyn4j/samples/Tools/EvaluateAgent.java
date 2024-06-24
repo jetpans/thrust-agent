@@ -17,7 +17,7 @@ public class EvaluateAgent {
 
     public static void main(String[] args) {
         NeuralNetwork test = Util.loadNeuralNetworkFromFile(
-                "parameterOptimization/itersChoice/iters=5steps=160/2024-05-31_14-50-43/AlphaThruster.obj8");
+                "results/2024-06-10_17-48-10/AlphaThruster.obj11");
         FitnessFunction tester = new TestFitness();
         int ITERATIONS = 10;
         double result = 0;
