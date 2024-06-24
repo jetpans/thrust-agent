@@ -1,5 +1,11 @@
 Made using resources from https://github.com/dyn4j/dyn4j-samples.
 
+## Contents:
+
+src - java source code
+results - temp folder which stores results of training that haven't yet been processed
+parameterOptimization - folder containing results for each parameter along with "theBest" agents and data.xlsx with all measurements and graphs
+
 ## Requirements:
 
 1. Java 21
